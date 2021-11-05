@@ -1,30 +1,20 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Project extends Model {}
+class Comment extends Model {}
 
-Project.init(
+//TODO: done
+Comment.init(
   {
+    // define columns
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    comment_desc: {
       type: DataTypes.STRING,
-      allowNull: false,
-    },
-    description: {
-      type: DataTypes.STRING,
-    },
-    date_created: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
-    needed_funding: {
-      type: DataTypes.FLOAT,
       allowNull: false,
     },
     user_id: {
@@ -34,14 +24,21 @@ Project.init(
         key: 'id',
       },
     },
+    forum_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'forum',
+        key: 'id',
+      },
+    },
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'project',
+    modelName: 'comment',
   }
 );
 
-module.exports = Project;
+module.exports = Comment;
