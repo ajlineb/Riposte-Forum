@@ -4,4 +4,41 @@ const sequelize = require('../config/connection');
 class Comment extends Model {}
 
 //TODO:
-Comment.init();
+Comment.init(
+  {
+    // define columns
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    comment_desc: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'user',
+        key: 'id',
+      },
+    },
+    forum_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'forum',
+        key: 'id',
+      },
+    },
+  },
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'forum',
+  }
+);
+
+module.exports = Comment;
