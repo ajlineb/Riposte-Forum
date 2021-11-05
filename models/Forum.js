@@ -3,7 +3,7 @@ const sequelize = require('../config/connection');
 
 class Forum extends Model {}
 
-//TODO:
+//TODO: done
 Forum.init(
   {
     // define columns

@@ -2,7 +2,7 @@ const User = require('./User');
 const Forum = require('./Forum');
 const Comment = require('./Comment');
 
-//TODO:
+//TODO: done
 User.hasMany(Forum, {
   foreignKey: 'user_id',
   onDelete: 'CASCADE',
