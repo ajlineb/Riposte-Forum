@@ -1,13 +1,15 @@
-const loginFormHandler = async (event) => {
+const loginHandler = async (event) => {
   event.preventDefault();
 
-  const userName = document.querySelector('#userName').value.trim();
-  const password = document.querySelector('#password-login').value.trim();
+  const email = document.querySelector('#email-address').value.trim();
+  const password = document.querySelector('#password').value.trim();
 
-  if (userName && password) {
+  //   console.log(email, '', password);
+
+  if (email && password) {
     const response = await fetch('/api/users/login', {
       method: 'POST',
-      body: JSON.stringify({ userName, password }),
+      body: JSON.stringify({ email, password }),
       headers: { 'Content-Type': 'application/json' },
     });
 
@@ -19,17 +21,17 @@ const loginFormHandler = async (event) => {
   }
 };
 
-const signupFormHandler = async (event) => {
+const signupHandler = async (event) => {
   event.preventDefault();
 
-  const username = document.querySelector('#username-signup').value.trim();
-  const email = document.querySelector('#email-signup').value.trim();
-  const password = document.querySelector('#password-signup').value.trim();
+  const email = document.querySelector('#email-signup').value.trim(); // TODO: update field name
+  const password = document.querySelector('#password-signup').value.trim(); // TODO: update field name
 
-  if (username && email && password) {
+  if (email && password) {
+    // TODO: Go back and update applicable fields
     const response = await fetch('/api/users', {
       method: 'POST',
-      body: JSON.stringify({ username, email, password }),
+      body: JSON.stringify({ email, password }),
       headers: { 'Content-Type': 'application/json' },
     });
 
@@ -41,10 +43,8 @@ const signupFormHandler = async (event) => {
   }
 };
 
-document
-  .querySelector('.login-form')
-  .addEventListener('submit', loginFormHandler);
+document.querySelector('#sign-in').addEventListener('submit', loginHandler);
 
 document
   .querySelector('.signup-form')
-  .addEventListener('submit', signupFormHandler);
+  .addEventListener('submit', signupHandler);
