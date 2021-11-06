@@ -1,9 +1,8 @@
+html,
 body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
+  height: 100%;
 }
 
-main {
-  flex: 1; /* Or flex-grow: 1;*/
+img {
+  filter: contrast(100%);
 }
