@@ -1,6 +1,39 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
+// GET All Users
+router.get('/', async (req, res) => {
+  // find all comments
+  //TODO:
+  try {
+    const userData = await User.findAll();
+    res.status(200).json(userData);
+  } catch (err) {
+    console.log('**********', err);
+    res.status(500).json(err);
+  }
+});
+
+//GET single user
+router.get('/:id', async (req, res) => {
+  // find one comment by its `id` value
+  // be sure to include its associated user and Forums
+  //TODO:
+  try {
+    const userData = await User.findByPk(req.params.id);
+
+    if (!userData) {
+      res.status(404).json({ message: 'No Comments with that ID!' });
+      return;
+    }
+
+    res.status(200).json(userData);
+  } catch (err) {
+    console.log('**********', err);
+    res.status(500).json(err);
+  }
+});
+
 // CREATE new user
 router.post('/', async (req, res) => {
   try {

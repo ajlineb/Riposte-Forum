@@ -17,17 +17,14 @@ Forum.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    forum_text: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
         model: 'user',
-        key: 'id',
-      },
-    },
-    comment_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'comment',
         key: 'id',
       },
     },
