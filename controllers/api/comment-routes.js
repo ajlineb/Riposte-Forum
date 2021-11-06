@@ -1,15 +1,16 @@
 const router = require('express').Router();
-const { Comment } = require('../../models');
+const { Comment, User, Forum } = require('../../models');
 
 router.get('/', async (req, res) => {
-  // find all comment
+  // find all comments
   //TODO:
   try {
-    const categroiesData = await Category.findAll({
-      include: [{ model: Product }],
+    const commentData = await Comment.findAll({
+      include: [{ model: Forum }],
     });
-    res.status(200).json(categroiesData);
+    res.status(200).json(commentData);
   } catch (err) {
+    console.log('**********', err);
     res.status(500).json(err);
   }
 });
@@ -19,17 +20,19 @@ router.get('/:id', async (req, res) => {
   // be sure to include its associated user and Forums
   //TODO:
   try {
-    const categoriesData = await Category.findByPk(req.params.id, {
-      include: [{ model: Product }],
+    const commentData = await Comment.findByPk(req.params.id, {
+      include: [{ model: Forum }, { model: User }],
     });
 
-    if (!categoriesData) {
-      res.status(404).json({ message: 'No categories with that ID!' });
+    if (!commentData) {
+      res.status(404).json({ message: 'No Comments with that ID!' });
       return;
     }
 
-    res.status(200).json(categoriesData);
+    commentData.user.password = null;
+    res.status(200).json(commentData);
   } catch (err) {
+    console.log('**********', err);
     res.status(500).json(err);
   }
 });
@@ -38,9 +41,10 @@ router.post('/', async (req, res) => {
   // create a new comment
   //TODO:
   try {
-    const categoryData = await Category.create(req.body);
-    res.status(200).json(categoryData);
+    const commentData = await Comment.create(req.body);
+    res.status(200).json(commentData);
   } catch (err) {
+    console.log('**********', err);
     res.status(400).json(err);
   }
 });
@@ -48,9 +52,9 @@ router.post('/', async (req, res) => {
 router.put('/:id', (req, res) => {
   // update a comment by its `id` value
   //TODO:
-  Category.update(
+  Comment.update(
     {
-      category_name: req.body.category_name,
+      comment_desc: req.body.comment_desc,
     },
     {
       where: {
@@ -68,7 +72,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   // delete a comment by its `id` value
   //TODO:
-  Category.destroy({
+  Comment.destroy({
     where: {
       id: req.params.id,
     },

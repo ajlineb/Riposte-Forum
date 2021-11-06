@@ -4,12 +4,17 @@ const { Forum, Comment, User } = require('../../models');
 router.get('/', async (req, res) => {
   // find all forum posts
   //TODO:
+  //console.log('*********HELLO**********');
   try {
     const forumData = await Forum.findAll({
-      include: [{ model: User, Comment }],
+      include: [{ model: Comment }, { model: User }],
+    });
+    forumData.forEach((data) => {
+      data.user.password = null;
     });
     res.status(200).json(forumData);
   } catch (err) {
+    console.log('**********', err);
     res.status(500).json(err);
   }
 });
@@ -20,16 +25,17 @@ router.get('/:id', async (req, res) => {
   //TODO:
   try {
     const forumData = await Forum.findByPk(req.params.id, {
-      include: [{ model: User, Comment }],
+      include: [{ model: Comment }, { model: User }],
     });
 
     if (!forumData) {
       res.status(404).json({ message: 'No Posts with that ID!' });
       return;
     }
-
+    forumData.user.password = null;
     res.status(200).json(forumData);
   } catch (err) {
+    console.log('**********', err);
     res.status(500).json(err);
   }
 });
@@ -41,6 +47,7 @@ router.post('/', async (req, res) => {
     const forumData = await Forum.create(req.body);
     res.status(200).json(forumData);
   } catch (err) {
+    console.log('**********', err);
     res.status(400).json(err);
   }
 });
