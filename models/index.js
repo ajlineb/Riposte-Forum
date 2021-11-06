@@ -30,4 +30,4 @@ Comment.belongsTo(Forum, {
   foreignKey: 'forum_id',
 });
 
-module.exports = { User, Project };
+module.exports = { User, Forum, Comment };

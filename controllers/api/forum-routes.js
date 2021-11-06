@@ -1,15 +1,20 @@
 const router = require('express').Router();
-const { Project } = require('../../models');
+const { Forum, Comment, User } = require('../../models');
 
 router.get('/', async (req, res) => {
   // find all forum posts
   //TODO:
+  //console.log('*********HELLO**********');
   try {
-    const categroiesData = await Category.findAll({
-      include: [{ model: Product }],
+    const forumData = await Forum.findAll({
+      include: [{ model: Comment }, { model: User }],
     });
-    res.status(200).json(categroiesData);
+    forumData.forEach((data) => {
+      data.user.password = null;
+    });
+    res.status(200).json(forumData);
   } catch (err) {
+    console.log('**********', err);
     res.status(500).json(err);
   }
 });
@@ -19,17 +24,18 @@ router.get('/:id', async (req, res) => {
   // be sure to include its associated comments
   //TODO:
   try {
-    const categoriesData = await Category.findByPk(req.params.id, {
-      include: [{ model: Product }],
+    const forumData = await Forum.findByPk(req.params.id, {
+      include: [{ model: Comment }, { model: User }],
     });
 
-    if (!categoriesData) {
-      res.status(404).json({ message: 'No categories with that ID!' });
+    if (!forumData) {
+      res.status(404).json({ message: 'No Posts with that ID!' });
       return;
     }
-
-    res.status(200).json(categoriesData);
+    forumData.user.password = null;
+    res.status(200).json(forumData);
   } catch (err) {
+    console.log('**********', err);
     res.status(500).json(err);
   }
 });
@@ -38,9 +44,10 @@ router.post('/', async (req, res) => {
   // create a new forum post
   //TODO:
   try {
-    const categoryData = await Category.create(req.body);
-    res.status(200).json(categoryData);
+    const forumData = await Forum.create(req.body);
+    res.status(200).json(forumData);
   } catch (err) {
+    console.log('**********', err);
     res.status(400).json(err);
   }
 });
@@ -48,9 +55,10 @@ router.post('/', async (req, res) => {
 router.put('/:id', (req, res) => {
   // update a forum post by its `id` value
   //TODO:
-  Category.update(
+  Forum.update(
     {
-      category_name: req.body.category_name,
+      forum_name: req.body.forum_name,
+      forum_text: req.body.forum_text,
     },
     {
       where: {
@@ -59,8 +67,8 @@ router.put('/:id', (req, res) => {
     }
   )
     //sends the updated Forum post as a json response
-    .then((updatedCategory) => {
-      res.status(200).json(updatedCategory);
+    .then((updatedForum) => {
+      res.status(200).json(updatedForum);
     })
     .catch((err) => res.status(500).json(err));
 });
@@ -68,13 +76,13 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   // delete a Forum post by its `id` value
   //TODO:
-  Category.destroy({
+  Forum.destroy({
     where: {
       id: req.params.id,
     },
   })
-    .then((deletedCategory) => {
-      res.status(200).json(deletedCategory);
+    .then((deletedForum) => {
+      res.status(200).json(deletedForum);
     })
     .catch((err) => res.status(500).json(err));
 });
