@@ -24,8 +24,8 @@ const loginHandler = async (event) => {
 const signupHandler = async (event) => {
   event.preventDefault();
 
-  const email = document.querySelector('#email-signup').value.trim(); // TODO: update field name
-  const password = document.querySelector('#password-signup').value.trim(); // TODO: update field name
+  const email = document.querySelector('#email').value.trim(); // TODO: update field name
+  const password = document.querySelector('#password').value.trim(); // TODO: update field name
 
   if (email && password) {
     // TODO: Go back and update applicable fields
@@ -46,5 +46,5 @@ const signupHandler = async (event) => {
 document.querySelector('#sign-in').addEventListener('submit', loginHandler);
 
 document
-  .querySelector('.signup-form')
+  .querySelector('#create-account')
   .addEventListener('submit', signupHandler);
