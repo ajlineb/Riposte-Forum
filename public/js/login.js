@@ -23,7 +23,7 @@ const loginHandler = async (event) => {
 
 const signupHandler = async (event) => {
   event.preventDefault();
-
+  // TODO: add first and last name
   const email = document.querySelector('#email').value.trim(); // TODO: update field name
   const password = document.querySelector('#password').value.trim(); // TODO: update field name
 
