@@ -24,6 +24,13 @@ Comment.init(
         key: 'id',
       },
     },
+    forum_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'forum',
+        key: 'id',
+      },
+    },
   },
   {
     sequelize,
