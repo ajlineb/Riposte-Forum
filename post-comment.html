@@ -29,7 +29,7 @@
     </header>
     <div class="p-10">
         <!--Card 1-->
-        <div class=" w-full lg:max-w-full lg:flex">
+        <div class="w-full lg:max-w-full lg:flex post content">
             <div
                 class="border border-gray-400 lg:border-gray-400 bg-white rounded p-4 flex flex-col justify-between leading-normal">
                 <div class="mb-8" id="post-username">
@@ -64,6 +64,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.736 3h4.018a2 2 0 01.485.06l3.76.94m-7 10v5a2 2 0 002 2h.096c.5 0 .905-.405.905-.904 0-.715.211-1.413.608-2.008L17 13V4m-7 10h2m5-10h2a2 2 0 012 2v6a2 2 0 01-2 2h-2.5" />
                             </svg>Dislike</a>
+
                     </div>
                 </div>
             </div>
@@ -71,17 +72,25 @@
         </div>
     </div>
 </div>
-<div
-    class="border border-gray-400 lg:border-gray-400 bg-white rounded p-2 flex flex-col justify-between leading-normal">
-    <div class="mb-6">
-        <p class="text-sm text-gray-600 flex items-center">*Commenter*</p>
-        <p class="text-gray-700 text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-        </p>
-    </div>
-    <div class="flex items-center">
-        <div class="text-sm">
-            <p class="text-gray-600">Aug 9</p>
+<input type="text" name="comm_content" id="comm_content"
+    class="p-4 focus:ring-indigo-500 focus:border-indigo-500 block pl-7 pr-12 sm:text-sm border-gray-300 flex flex-col justify-between leading-normal"
+    placeholder="Add a comment...">
+
+</html>
+<div class="p-10">
+    <!--Card 1-->
+    <div class="box-content p-4 lg:flex comment-box">
+        <div
+            class="border border-gray-400 lg:border-gray-400 bg-white rounded p-4 flex flex-col justify-between leading-normal">
+            <div class="mb-8" id="post-username">
+                <p class="text-sm text-gray-600 flex items-center">
+                    *Commenter's username*
+                </p>
+                <p class="text-gray-700 text-base" id="post-content">Lorem ipsum dolor sit amet, consectetur
+                    adipisicing elit.
+                    Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.</p>
+            </div>
+            <span class="text-gray-600">Aug 18</span>
         </div>
     </div>
 </div>
