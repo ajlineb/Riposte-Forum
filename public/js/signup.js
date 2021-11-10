@@ -13,17 +13,17 @@ const validatePassword = function () {
 
 const signupHandler = async (event) => {
   event.preventDefault();
-
+  // add username
   const firstName = document.querySelector('#first-name').value.trim();
   const lastName = document.querySelector('#last-name').value.trim();
   const email = document.querySelector('#email').value.trim();
   const password = document.querySelector('#password').value.trim();
 
-  if (firstName && lastName && email && password) {
+  if (username && firstName && lastName && email && password) {
     // TODO: Go back and update applicable fields
     const response = await fetch('/api/users', {
       method: 'POST',
-      body: JSON.stringify({ firstName, lastName, email, password }),
+      body: JSON.stringify({ username, email, password }),
       headers: { 'Content-Type': 'application/json' },
     });
 
