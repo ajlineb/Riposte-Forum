@@ -55,6 +55,7 @@ router.put('/:id', (req, res) => {
   Comment.update(
     {
       comment_desc: req.body.comment_desc,
+      //add timestamp here for updating comments
     },
     {
       where: {
@@ -63,8 +64,8 @@ router.put('/:id', (req, res) => {
     }
   )
     //sends the updated comment as a json response
-    .then((updatedCategory) => {
-      res.status(200).json(updatedCategory);
+    .then((updatedComment) => {
+      res.status(200).json(updatedComment);
     })
     .catch((err) => res.status(500).json(err));
 });
@@ -77,8 +78,8 @@ router.delete('/:id', (req, res) => {
       id: req.params.id,
     },
   })
-    .then((deletedCategory) => {
-      res.status(200).json(deletedCategory);
+    .then((deletedComment) => {
+      res.status(200).json(deletedComment);
     })
     .catch((err) => res.status(500).json(err));
 });
