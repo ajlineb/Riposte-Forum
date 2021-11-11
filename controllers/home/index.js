@@ -6,4 +6,8 @@ router.get('/login', (req, res) => {
 router.get('/register', (req, res) => {
   res.render('register');
 });
+router.get('/posts', (req, res) => {
+  res.render('post-comment');
+
+});
 module.exports = router;
