@@ -1,0 +1,20 @@
+{{forEach}}
+<div class='p-10'>
+  <div class='box-content p-4 lg:flex comment-box'>
+    <div
+      class='border border-gray-400 lg:border-gray-400 bg-white rounded p-4 flex flex-col justify-between leading-normal'
+    >
+      <div class='mb-8'>
+        <span
+          class='text-sm text-gray-600 flex items-center'
+          id='post-username'
+        >{{user.username}}</span>
+        <span
+          class='text-gray-700 text-base'
+          id='post-content'
+        >{{comments.comment.content}}</span>
+      </div>
+      <span class='text-gray-600'>Aug 18</span>
+    </div>
+  </div>
+</div>
