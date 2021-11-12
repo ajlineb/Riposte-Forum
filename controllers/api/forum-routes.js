@@ -44,7 +44,12 @@ router.post('/', async (req, res) => {
   // create a new forum post
   //TODO: need to work this!!!!
   try {
-    const forumData = await Forum.create(req.body);
+    const forumData = await Forum.create({
+      forum_name: req.body.forum_name,
+      forum_text: req.body.forum_text,
+      forum_time_stamp: req.body.forum_time_stamp, //will need to know what time this post was posted!
+      user_id: req.body.user_id, //will need to know which user posted!
+    });
     res.status(200).json(forumData);
   } catch (err) {
     console.log('**********', err);

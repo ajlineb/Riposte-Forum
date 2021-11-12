@@ -41,7 +41,12 @@ router.post('/', async (req, res) => {
   // create a new comment
   //TODO: need to work this!!!!!
   try {
-    const commentData = await Comment.create(req.body);
+    const commentData = await Comment.create({
+      comment_desc: req.body.comment_desc,
+      comment_time_stamp: req.body.comment_time_stamp, //will need to know what time this comment was posted!
+      user_id: req.body.user_id, //will need to know whcih user this comment is from!
+      forum_id: req.body.forum_id, //will need to know which forum this comment is in!
+    });
     res.status(200).json(commentData);
   } catch (err) {
     console.log('**********', err);
