@@ -1,17 +1,16 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-// GET All Users
+// GET LOGIN PAGE
 router.get('/', async (req, res) => {
-  // find all comments
-  //TODO:
-  try {
-    const userData = await User.findAll();
-    res.status(200).json(userData);
-  } catch (err) {
-    console.log('**********', err);
-    res.status(500).json(err);
-  }
+  res.render('login');
+  // try {
+  //   const userData = await User.findAll();
+  //   res.status(200).json(userData);
+  // } catch (err) {
+  //   console.log('**********', err);
+  //   res.status(500).json(err);
+  // }
 });
 
 //GET single user
