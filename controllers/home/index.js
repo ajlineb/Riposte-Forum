@@ -2,7 +2,7 @@ const { User, Forum, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 //Route used to get all posts
-router.get('/allposts', withAuth, async (req, res) => {
+router.get('/allposts', async (req, res) => {
   try {
     const dbPostsData = await Forum.findAll({
       include: [
@@ -55,7 +55,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
 // Login route
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect('/allposts');
+    res.redirect('/all-posts');
     return;
   }
   res.render('login');
@@ -66,4 +66,9 @@ router.get('/register', async (req, res) => {
 router.get('/newpost', (req, res) => {
   res.render('new-post');
 });
+
+router.get('/', (req, res) => {
+  res.render('login');
+});
+
 module.exports = router;

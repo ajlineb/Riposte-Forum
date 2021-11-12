@@ -3,21 +3,19 @@ const { User } = require('../../models');
 
 // GET LOGIN PAGE
 router.get('/', async (req, res) => {
-  res.render('login');
-  // try {
-  //   const userData = await User.findAll();
-  //   res.status(200).json(userData);
-  // } catch (err) {
-  //   console.log('**********', err);
-  //   res.status(500).json(err);
-  // }
+  // find all users
+  try {
+    const userData = await User.findAll();
+    res.status(200).json(userData);
+  } catch (err) {
+    console.log('**********', err);
+    res.status(500).json(err);
+  }
 });
 
 //GET single user
 router.get('/:id', async (req, res) => {
-  // find one comment by its `id` value
-  // be sure to include its associated user and Forums
-  //TODO:
+  // find one user by its `id` value
   try {
     const userData = await User.findByPk(req.params.id);
 
