@@ -5,18 +5,18 @@ const withAuth = require('../../utils/auth');
 //Route used to get all posts
 router.get('/posts', withAuth, async (req, res) => {
   try {
-    const dbPosts = await Forum.findAll({
+    const dbPostsData = await Forum.findAll({
       include: [
         {
-          mode: User,
+          model: User,
           attributes: ['username'],
         },
       ],
     });
 
-    const posts = dbPosts.map((post) => post.get({ plain: true }));
+    const posts = dbPostsData.map((post) => post.get({ plain: true }));
     res.render('posts', {
-      posts,
+      posts, //use this variable for showing all posts
       loggedIn: req.session.loggedIn,
     });
   } catch (err) {
@@ -25,11 +25,42 @@ router.get('/posts', withAuth, async (req, res) => {
   }
 });
 
+//Getting a single post
 router.get('/post/:id', withAuth, async (req, res) => {
-  res.render('post');
+  try {
+    const dbPostsData = await Forum.findByPk(req.params.id, {
+      include: [
+        {
+          model: Comment,
+          attributes: [
+            'id',
+            'comment_desc',
+            'comment_time_stamp',
+            'user_id',
+            'forum_id',
+          ],
+        },
+        {
+          model: User,
+          attributes: ['id', 'username'],
+        },
+      ],
+    });
+
+    const post = dbPostsData.get({ plain: true });
+    res.render('post', { post, loggedIn: req.session.loggedIn });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
 
-router.get('/login', async (req, res) => {
+// Login route
+router.get('/login', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/posts');
+    return;
+  }
   res.render('login');
 });
 
