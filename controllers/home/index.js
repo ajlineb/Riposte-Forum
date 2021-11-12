@@ -13,6 +13,7 @@ router.get('/allposts', async (req, res) => {
       ],
     });
     const posts = dbPostsData.map((post) => post.get({ plain: true }));
+    console.log("*****posts*****", posts);
     res.render('all-posts', {
       posts, //use this variable for showing all posts
       loggedIn: req.session.loggedIn,
