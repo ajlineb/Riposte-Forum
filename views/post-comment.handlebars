@@ -17,7 +17,7 @@
                 <div class="flex">
                     <div class="text-sm inline">
                         <span class="text-gray-600">Aug 18</span>
-                        <a href="#" class="font-medium text-blue-900 hover:text-indigo-500">
+                        <a href="#" class="font-medium text-blue-900 hover:text-indigo-500 com-Btn">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                 fill="currentColor">
                                 <path fill-rule="evenodd"
@@ -25,13 +25,13 @@
                                     clip-rule="evenodd" />
                             </svg>Comment
                         </a>
-                        <a href="#" class="font-medium text-blue-900 hover:text-indigo-500" id=""><svg
+                        <a href="#" class="font-medium text-blue-900 hover:text-indigo-500 like-Btn" id=""><svg
                                 xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
                             </svg>Like</a>
-                        <a href="#" class="font-medium text-blue-900 hover:text-indigo-500"><svg
+                        <a href="#" class="font-medium text-blue-900 hover:text-indigo-500 dislike-Btn"><svg
                                 xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -40,21 +40,21 @@
                     </div>
                 </div>
             </div>
+<div class="comment-field" style="display: none;" id="comment-field">           
+<input type="text" class="focus:ring-indigo-500 focus:border-indigo-500 block h-10 w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="Write a comment...">
+  <button type="submit" class="group relative w-300 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-900 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 post-Com" style="display: none;">
+    <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+        <path fill-rule="evenodd"
+            d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                 clip-rule="evenodd" />
+            </svg>
+        </span>
+    Submit
+</button>
+        </div>
+    </div>
+</div>
+{{#each comments as |comment|}}
+{{> comments-block}}
+{{/each}}
 
-        </div>
-    </div>
-</div>
-<div
-    class="border border-gray-400 lg:border-gray-400 bg-white rounded p-2 flex flex-col justify-between leading-normal">
-    <div class="mb-6">
-        <p class="text-sm text-gray-600 flex items-center">*Commenter*</p>
-        <p class="text-gray-700 text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-        </p>
-    </div>
-    <div class="flex items-center">
-        <div class="text-sm">
-            <p class="text-gray-600">Aug 9</p>
-        </div>
-    </div>
-</div>
