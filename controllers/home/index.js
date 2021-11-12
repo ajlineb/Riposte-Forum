@@ -64,8 +64,39 @@ router.get('/login', (req, res) => {
 router.get('/register', async (req, res) => {
   res.render('register');
 });
+<<<<<<< HEAD
 router.get('/newpost', (req, res) => {
   res.render('new-post');
+=======
+
+router.get('/newpost', withAuth, async (req, res) => {
+  try {
+    const dbPostsData = await Forum.findByPk(req.params.id, {
+      include: [
+        {
+          model: Comment,
+          attributes: [
+            'id',
+            'comment_desc',
+            'comment_time_stamp',
+            'user_id',
+            'forum_id',
+          ],
+        },
+        {
+          model: User,
+          attributes: ['id', 'username'],
+        },
+      ],
+    });
+
+    const post = dbPostsData.get({ plain: true });
+    res.render('new-post', { post, loggedIn: req.session.loggedIn });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+>>>>>>> main
 });
 
 router.get('/', (req, res) => {
