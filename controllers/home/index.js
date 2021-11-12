@@ -3,7 +3,7 @@ const { User, Forum, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 //Route used to get all posts
-router.get('/allposts', withAuth, async (req, res) => {
+router.get('/allposts', async (req, res) => {
   try {
     const dbPostsData = await Forum.findAll({
       include: [
@@ -15,6 +15,7 @@ router.get('/allposts', withAuth, async (req, res) => {
     });
 
     const posts = dbPostsData.map((post) => post.get({ plain: true }));
+    console.log("*****posts*****", posts);
     res.render('all-posts', {
       posts, //use this variable for showing all posts
       loggedIn: req.session.loggedIn,
