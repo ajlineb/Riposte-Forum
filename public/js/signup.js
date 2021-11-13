@@ -21,7 +21,7 @@ const signupHandler = async (event) => {
 
   if (firstName && lastName && email && password) {
     // TODO: Go back and update applicable fields
-    const response = await fetch('/api/users/signup', {
+    const response = await fetch('/api/user/signup', {
       method: 'POST',
       body: JSON.stringify({ firstName, email, password }),
       headers: { 'Content-Type': 'application/json' },
