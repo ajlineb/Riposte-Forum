@@ -49,6 +49,7 @@ router.post('/', async (req, res) => {
       forum_time_stamp: req.body.forum_time_stamp, //will need to know what time this post was posted!
       user_id: req.body.user_id, //will need to know which user posted!
       like_count: 0,
+      dislike_count: 0,
     });
     res.status(200).json(forumData);
   } catch (err) {
