@@ -3,7 +3,7 @@ const withAuth = require('../../utils/auth');
 const router = require('express').Router();
 
 //Route used to get all posts
-router.get('/allposts', async (req, res) => {
+router.get('/all-posts', async (req, res) => {
   try {
     const dbPostsData = await Forum.findAll({
       include: [
