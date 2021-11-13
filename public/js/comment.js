@@ -10,6 +10,7 @@ comBtn.addEventListener('click', () => {
 });
 
 likeBtn.addEventListener('click', () => {
+  console.log('im here');
   // change icon
   likeBtn.style = 'display: none';
   likedBtn.style = 'display: visible';
