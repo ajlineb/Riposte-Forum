@@ -45,6 +45,12 @@
           >Help</a>
         </nav>
       </div>
+      {{#if loggedIn}}
+        <a
+          href='/login'
+          class='px-3 py-2 mr-5 rounded hover:text-gray-900 hover:bg-indigo-400'
+        >Logout</a>
+      {{/if}}
     </header>
     {{{body}}}
 
@@ -61,12 +67,5 @@
         </a>
       </div>
     </footer>
-    <script src='js/login.js'></script>
-    <script src='js/logout.js'></script>
-<<<<<<< HEAD
-    <script src='js/signup.js'></script>
-=======
-    <script src='js/comment.js'></script>
->>>>>>> main
   </body>
 </html>

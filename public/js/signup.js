@@ -19,16 +19,16 @@ const signupHandler = async (event) => {
   const email = document.querySelector('#email').value.trim();
   const password = document.querySelector('#password').value.trim();
 
-  if (username && firstName && lastName && email && password) {
+  if (firstName && lastName && email && password) {
     // TODO: Go back and update applicable fields
-    const response = await fetch('/api/users', {
+    const response = await fetch('/api/users/signup', {
       method: 'POST',
-      body: JSON.stringify({ username, email, password }),
+      body: JSON.stringify({ firstName, email, password }),
       headers: { 'Content-Type': 'application/json' },
     });
 
     if (response.ok) {
-      document.location.replace('/');
+      document.location.replace('all-posts');
     } else {
       alert('Failed to sign up.');
     }
