@@ -32,6 +32,16 @@ Forum.init(
         key: 'id',
       },
     },
+    likes_count: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+      allowNull: false,
+    },
+    dislike_count: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+      allowNull: false,
+    },
   },
   {
     sequelize,

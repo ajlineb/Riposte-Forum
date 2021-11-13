@@ -26,7 +26,7 @@ router.get('/all-posts', async (req, res) => {
 });
 
 //Getting a single post
-router.get('/post/:id', withAuth, async (req, res) => {
+router.get('/post/:id', async (req, res) => {
   try {
     const dbPostsData = await Forum.findByPk(req.params.id, {
       include: [
@@ -48,6 +48,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
     });
 
     const post = dbPostsData.get({ plain: true });
+    console.log('*****posts*****', dbPostsData);
     res.render('post-comment', { post, loggedIn: req.session.loggedIn });
   } catch (err) {
     console.log(err);

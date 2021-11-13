@@ -3,18 +3,24 @@
     "forum_name": "Music Near Me",
     "forum_text": "A mobile app that will send you notifications whenever a concert is playing in your area.",
     "forum_time_stamp": "2001-01-03 01:44:00",
-    "user_id": "2"
+    "user_id": 2,
+    "likes_count": 1,
+    "dislike_count": 0
   },
   {
     "forum_name": "Best Gaming Device!",
     "forum_text": "Best gaming device has got to be the PC, prove me wrong haha!",
     "forum_time_stamp": "2001-01-03 01:44:00",
-    "user_id": "1"
+    "user_id": 1,
+    "likes_count": 3,
+    "dislike_count": 0
   },
   {
     "forum_name": "What is your favorite food ?",
     "forum_text": "My favorite food is pizza what about you guys ?",
     "forum_time_stamp": "2001-01-03 01:44:00",
-    "user_id": "3"
+    "user_id": 3,
+    "likes_count": 0,
+    "dislike_count": 0
   }
 ]
