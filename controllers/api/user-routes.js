@@ -1,10 +1,9 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-// GET All Users
+// GET LOGIN PAGE
 router.get('/', async (req, res) => {
-  // find all comments
-  //TODO:
+  // find all users
   try {
     const userData = await User.findAll();
     res.status(200).json(userData);
@@ -16,9 +15,7 @@ router.get('/', async (req, res) => {
 
 //GET single user
 router.get('/:id', async (req, res) => {
-  // find one comment by its `id` value
-  // be sure to include its associated user and Forums
-  //TODO:
+  // find one user by its `id` value
   try {
     const userData = await User.findByPk(req.params.id);
 
