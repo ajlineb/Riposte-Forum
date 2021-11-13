@@ -14,7 +14,7 @@ const loginHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace('/all-post');
+      document.location.replace('/all-posts');
     } else {
       alert('Failed to log in.');
     }
