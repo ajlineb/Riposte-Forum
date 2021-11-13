@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-// GET All Users
+// GET LOGIN PAGE
 router.get('/', async (req, res) => {
   // find all users
   try {
