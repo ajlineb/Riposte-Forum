@@ -1,6 +1,6 @@
-const router = require('express').Router();
 const { User, Forum, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
+const router = require('express').Router();
 
 //Route used to get all posts
 router.get('/allposts', async (req, res) => {
@@ -13,7 +13,6 @@ router.get('/allposts', async (req, res) => {
         },
       ],
     });
-
     const posts = dbPostsData.map((post) => post.get({ plain: true }));
     console.log('*****posts*****', posts);
     res.render('all-posts', {
@@ -56,7 +55,6 @@ router.get('/post/:id', async (req, res) => {
     res.status(500).json(err);
   }
 });
-
 // Login route
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
@@ -65,7 +63,6 @@ router.get('/login', (req, res) => {
   }
   res.render('login');
 });
-
 router.get('/register', async (req, res) => {
   res.render('register');
 });
