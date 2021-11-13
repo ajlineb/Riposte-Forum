@@ -15,7 +15,7 @@ router.get('/allposts', async (req, res) => {
     });
 
     const posts = dbPostsData.map((post) => post.get({ plain: true }));
-    console.log("*****posts*****", posts);
+    console.log('*****posts*****', posts);
     res.render('all-posts', {
       posts, //use this variable for showing all posts
       loggedIn: req.session.loggedIn,
@@ -69,29 +69,29 @@ router.get('/register', async (req, res) => {
   res.render('register');
 });
 
-router.get('/newpost', withAuth, async (req, res) => {
+router.get('/newpost', async (req, res) => {
   try {
-    const dbPostsData = await Forum.findByPk(req.params.id, {
-      include: [
-        {
-          model: Comment,
-          attributes: [
-            'id',
-            'comment_desc',
-            'comment_time_stamp',
-            'user_id',
-            'forum_id',
-          ],
-        },
-        {
-          model: User,
-          attributes: ['id', 'username'],
-        },
-      ],
-    });
-
-    const post = dbPostsData.get({ plain: true });
-    res.render('new-post', { post, loggedIn: req.session.loggedIn });
+    res.render('new-post');
+    // const dbPostsData = await Forum.findByPk(req.params.id, {
+    //   include: [
+    //     {
+    //       model: Comment,
+    //       attributes: [
+    //         'id',
+    //         'comment_desc',
+    //         'comment_time_stamp',
+    //         'user_id',
+    //         'forum_id',
+    //       ],
+    //     },
+    //     {
+    //       model: User,
+    //       attributes: ['id', 'username'],
+    //     },
+    //   ],
+    // });
+    // const post = dbPostsData.get({ plain: true });
+    // res.render('new-post', { post, loggedIn: req.session.loggedIn });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
