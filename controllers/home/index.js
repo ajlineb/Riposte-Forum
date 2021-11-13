@@ -39,6 +39,12 @@ router.get('/post/:id', async (req, res) => {
             'user_id',
             'forum_id',
           ],
+          include: [
+            {
+              model: User,
+              attributes: ['id', 'username'],
+            },
+          ],
         },
         {
           model: User,
@@ -48,8 +54,11 @@ router.get('/post/:id', async (req, res) => {
     });
 
     const post = dbPostsData.get({ plain: true });
-    console.log('*****posts*****', dbPostsData);
-    res.render('post-comment', { post, loggedIn: req.session.loggedIn });
+    console.log('*****posts*****', post);
+    res.render('post-comment', {
+      post,
+      loggedIn: req.session.loggedIn,
+    });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

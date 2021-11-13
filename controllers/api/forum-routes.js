@@ -46,9 +46,9 @@ router.post('/', async (req, res) => {
     const forumData = await Forum.create({
       forum_name: req.body.forum_name,
       forum_text: req.body.forum_text,
-      forum_time_stamp: req.body.forum_time_stamp, //will need to know what time this post was posted!
+      forum_time_stamp: req.body.forum_time_stamp, //will need to know what time this post was posted! //check how to get only month day and year
       user_id: req.body.user_id, //will need to know which user posted!
-      like_count: 0,
+      likes_count: 0,
       dislike_count: 0,
     });
     res.status(200).json(forumData);
