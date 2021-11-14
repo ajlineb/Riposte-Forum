@@ -17,13 +17,14 @@ const signupHandler = async (event) => {
   const firstName = document.querySelector('#first-name').value.trim();
   const lastName = document.querySelector('#last-name').value.trim();
   const email = document.querySelector('#email').value.trim();
+  const username = document.querySelector('#username').value.trim();
   const password = document.querySelector('#password').value.trim();
 
-  if (firstName && lastName && email && password) {
+  if (firstName && lastName && email && username && password) {
     // TODO: Go back and update applicable fields
     const response = await fetch('/api/user/signup', {
       method: 'POST',
-      body: JSON.stringify({ firstName, email, password }),
+      body: JSON.stringify({ username, email, password }),
       headers: { 'Content-Type': 'application/json' },
     });
 
