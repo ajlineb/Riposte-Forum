@@ -78,33 +78,26 @@ router.get('/register', async (req, res) => {
 
 router.get('/newpost', async (req, res) => {
   try {
-    res.render('new-post');
-    // const dbPostsData = await Forum.findByPk(req.params.id, {
-    //   include: [
-    //     {
-    //       model: Comment,
-    //       attributes: [
-    //         'id',
-    //         'comment_desc',
-    //         'comment_time_stamp',
-    //         'user_id',
-    //         'forum_id',
-    //       ],
-    //     },
-    //     {
-    //       model: User,
-    //       attributes: ['id', 'username'],
-    //     },
-    //   ],
-    // });
-    // const post = dbPostsData.get({ plain: true });
-    // res.render('new-post', { post, loggedIn: req.session.loggedIn });
+    let sessionData = req.session;
+    res.render('new-post', {
+      sessionData
+    });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
 });
 
+router.get('/session', async (req, res) => {
+  try {
+    const data = req.session;
+    console.log(data);
+    res.json(data);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 router.get('/', (req, res) => {
   res.render('login');
 });

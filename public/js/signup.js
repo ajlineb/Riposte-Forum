@@ -19,6 +19,8 @@ const signupHandler = async (event) => {
   const email = document.querySelector('#email').value.trim();
   const username = document.querySelector('#username').value.trim();
   const password = document.querySelector('#password').value.trim();
+  const modal = document.getElementById("my-modal");
+  const okButton = document.getElementById("ok-btn");
 
   if (firstName && lastName && email && username && password) {
     // TODO: Go back and update applicable fields
@@ -28,14 +30,19 @@ const signupHandler = async (event) => {
       headers: { 'Content-Type': 'application/json' },
     });
 
-    if (response.ok) {
-      document.location.replace('all-posts');
+    if (response.status === 200) {
+      scroll(0,0);
+      console.log("response okay")
+      modal.style.display = "block";
+      okButton.onclick = function() {
+        modal.style.display = "none";
+        document.location.replace('/all-posts');
+      }
     } else {
       alert('Failed to sign up.');
     }
   }
 };
 
-document
-  .getElementById('create-account')
+document.getElementById('create-account')
   .addEventListener('submit', signupHandler);
