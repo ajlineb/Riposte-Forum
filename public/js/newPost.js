@@ -8,9 +8,31 @@ async function getUser(){
     return matchId
 }
 
+function runModal (submitButton) {
+    let modal = document.getElementById("my-modal");
+    //let btn = document.getElementById("open-btn");
+    let button = document.getElementById("ok-btn");
+
+    submitButton.onclick = function() {
+    modal.style.display = "block";
+    bgColor.style.display = "block";
+    }
+    // We want the modal to close when the OK button is clicked
+    button.onclick = function() {
+    modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+    }
+}
 
 async function submitNewPost(event) {
     event.preventDefault();
+    const modal = document.getElementById("my-modal");
+    const okButton = document.getElementById("ok-btn");
     const post_title = document.getElementById('post_title').value;
     const post_content = document.getElementById('post_content').value;
     const userName = await getUser();
@@ -28,6 +50,21 @@ async function submitNewPost(event) {
         },
       });
       const text = response.status;
+      console.log(text);
+      if (text === 200) {
+        modal.style.display = "block";
+        //bgColor.style.display = "block";
+        okButton.onclick = function() {
+          modal.style.display = "none";
+          document.location.replace('/all-posts');
+          }
+      
+          window.onclick = function(event) {
+          if (event.target == modal) {
+              modal.style.display = "none";
+          }
+          }
+      }
 }
 const submitPost = document.getElementById('post_button');
 submitPost.addEventListener('click', submitNewPost);
