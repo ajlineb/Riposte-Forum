@@ -1,11 +1,23 @@
 
 async function getUser(){
+    // after matching returns user id 
     const response = await fetch('/session');
     const jsonRes = await response.json();
     const allUsers = await fetch('/api/user');
     const allUserJson = await allUsers.json();
     let matchId = allUserJson.filter(user => user.username === jsonRes.username).map(user => user.id);
     return matchId
+}
+
+async function getUserNav(){
+  // return username
+  const response = await fetch('/session');
+  const jsonRes = await response.json();
+  console.log(jsonRes);
+  if (!jsonRes.username) {
+      return "User not logged in"
+  }
+  return jsonRes.username
 }
 
 function runModal (submitButton) {
@@ -65,7 +77,12 @@ async function submitNewPost(event) {
           }
       }
 }
+const userEl = document.getElementById("user-id");
 const submitPost = document.getElementById('post_button');
+const userNameEl = getUserNav().then((user) => {
+    userEl.innerHTML = user;
+})
+
 submitPost.addEventListener('click', submitNewPost);
 
   
