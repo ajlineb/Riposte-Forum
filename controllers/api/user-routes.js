@@ -42,7 +42,12 @@ router.post('/signup', async (req, res) => {
 
     req.session.save(() => {
       req.session.loggedIn = true;
-
+      req.session.username = dbUserData.username;
+      console.log(req.session.username);
+      console.log(
+        '🚀 ~ file: user-routes.js ~ req.session.save ~ req.session.cookie',
+        req.session.cookie
+      );
       res.status(200).json(dbUserData);
     });
   } catch (err) {
@@ -75,7 +80,6 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect email or password. Please try again!' });
       return;
     }
-    //req.session.user = dbUserData;
     req.session.save(() => {
       req.session.loggedIn = true;
       req.session.username = dbUserData.username;
