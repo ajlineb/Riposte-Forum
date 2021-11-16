@@ -100,7 +100,7 @@ router.post('/login', async (req, res) => {
 });
 
 // Logout
-router.post('/logout', async (req, res) => {
+router.post('/logout', (req, res) => {
   console.log('user logged out!');
   if (req.session.loggedIn) {
     req.session.destroy(() => {
