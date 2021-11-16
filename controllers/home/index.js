@@ -14,7 +14,8 @@ router.get('/all-posts', withAuth, async (req, res) => {
       ],
     });
     const posts = dbPostsData.map((post) => post.get({ plain: true }));
-    console.log('*****posts*****', posts);
+    //console.log('*****posts*****', posts);
+    console.log(req.session.username, 'is logged in on the homepage!');
     res.render('all-posts', {
       posts, //use this variable for showing all posts
       loggedIn: req.session.loggedIn,
@@ -26,7 +27,7 @@ router.get('/all-posts', withAuth, async (req, res) => {
 });
 
 //Getting a single post
-router.get('/post/:id', async (req, res) => {
+router.get('/post/:id', withAuth, async (req, res) => {
   try {
     const dbPostsData = await Forum.findByPk(req.params.id, {
       include: [
@@ -54,7 +55,7 @@ router.get('/post/:id', async (req, res) => {
     });
 
     const post = dbPostsData.get({ plain: true });
-    console.log('*****posts*****', post);
+    //console.log('*****posts*****', post);
     res.render('post-comment', {
       post,
       loggedIn: req.session.loggedIn,
@@ -76,7 +77,7 @@ router.get('/register', async (req, res) => {
   res.render('register');
 });
 
-router.get('/newpost', async (req, res) => {
+router.get('/newpost', withAuth, async (req, res) => {
   try {
     let sessionData = req.session;
     res.render('new-post', {

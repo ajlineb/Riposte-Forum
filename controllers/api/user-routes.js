@@ -88,8 +88,6 @@ router.post('/login', async (req, res) => {
         '🚀 ~ file: user-routes.js ~ line 57 ~ req.session.save ~ req.session.cookie',
         req.session.cookie
       );
-      
-
 
       res
         .status(200)
@@ -99,11 +97,11 @@ router.post('/login', async (req, res) => {
     console.log(err);
     res.status(500).json(err);
   }
-  
 });
 
 // Logout
-router.post('/logout', (req, res) => {
+router.post('/logout', async (req, res) => {
+  console.log('user logged out!');
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();
