@@ -100,6 +100,7 @@ router.get('/session', async (req, res) => {
   }
 });
 router.get('/', (req, res) => {
+  const data = req.session;
   res.render('login');
 });
 

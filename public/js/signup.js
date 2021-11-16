@@ -11,6 +11,9 @@ const validatePassword = function () {
   }
 };
 
+
+
+
 const signupHandler = async (event) => {
   event.preventDefault();
   // add username
@@ -31,6 +34,7 @@ const signupHandler = async (event) => {
     });
 
     if (response.status === 200) {
+      await mailSend();
       scroll(0,0);
       console.log("response okay")
       modal.style.display = "block";
@@ -42,6 +46,24 @@ const signupHandler = async (event) => {
       alert('Failed to sign up.');
     }
   }
+};
+const mailSend = async () => {
+  const from = "postmaster@riposte.com";
+  const subject = "Welcome to Riposte";
+  const text = "You have successfully signed up!";
+
+  const response = await fetch('/api/email', {
+    method: 'POST',
+    body: JSON.stringify({
+      from: from,
+      to: "corewired741@outlook.com",
+      subject: subject,
+      text: text
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 };
 
 document.getElementById('create-account')

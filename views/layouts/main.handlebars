@@ -51,6 +51,9 @@
               class='px-3 py-2 mr-5 rounded hover:text-gray-900 hover:bg-indigo-400'
             >Logout</a>
           {{/if}}
+          <p id='user-id' 
+             class='px-3 py-2 mr-5 rounded hover:text-gray-900 hover:bg-indigo-400'
+          >User not logged in</p>
         </nav>
       </div>
 
@@ -70,8 +73,10 @@
         </a>
       </div>
     </footer>
+
     {{#if loggedIn}}
       <script src='js/logout.js'></script>
+      <script src='js/session.js'></script>
     {{/if}}
   </body>
 </html>

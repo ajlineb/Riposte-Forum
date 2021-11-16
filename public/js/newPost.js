@@ -49,9 +49,8 @@ async function submitNewPost(event) {
           'Content-Type': 'application/json',
         },
       });
-      const text = response.status;
-      console.log(text);
-      if (text === 200) {
+
+      if (response.status == 200) {
         modal.style.display = "block";
         //bgColor.style.display = "block";
         okButton.onclick = function() {
