@@ -1,5 +1,5 @@
-<<<<<<< HEAD
 async function getUser() {
+  // after matching returns user id
   const response = await fetch('/session');
   const jsonRes = await response.json();
   const allUsers = await fetch('/api/user');
@@ -10,38 +10,21 @@ async function getUser() {
   return matchId;
 }
 
-function runModal(submitButton) {
-  let modal = document.getElementById('my-modal');
-  //let btn = document.getElementById("open-btn");
-  let button = document.getElementById('ok-btn');
-=======
-
-async function getUser(){
-    // after matching returns user id 
-    const response = await fetch('/session');
-    const jsonRes = await response.json();
-    const allUsers = await fetch('/api/user');
-    const allUserJson = await allUsers.json();
-    let matchId = allUserJson.filter(user => user.username === jsonRes.username).map(user => user.id);
-    return matchId
-}
-
-async function getUserNav(){
+async function getUserNav() {
   // return username
   const response = await fetch('/session');
   const jsonRes = await response.json();
   console.log(jsonRes);
   if (!jsonRes.username) {
-      return "User not logged in"
+    return 'User not logged in';
   }
-  return jsonRes.username
+  return jsonRes.username;
 }
 
-function runModal (submitButton) {
-    let modal = document.getElementById("my-modal");
-    //let btn = document.getElementById("open-btn");
-    let button = document.getElementById("ok-btn");
->>>>>>> main
+function runModal(submitButton) {
+  let modal = document.getElementById('my-modal');
+  //let btn = document.getElementById("open-btn");
+  let button = document.getElementById('ok-btn');
 
   submitButton.onclick = function () {
     modal.style.display = 'block';
@@ -102,10 +85,10 @@ async function submitNewPost(event) {
     };
   }
 }
-const userEl = document.getElementById("user-id");
+const userEl = document.getElementById('user-id');
 const submitPost = document.getElementById('post_button');
 const userNameEl = getUserNav().then((user) => {
-    userEl.innerHTML = user;
-})
+  userEl.innerHTML = user;
+});
 
 submitPost.addEventListener('click', submitNewPost);
