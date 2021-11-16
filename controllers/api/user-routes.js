@@ -35,14 +35,19 @@ router.get('/:id', async (req, res) => {
 router.post('/signup', async (req, res) => {
   try {
     const dbUserData = await User.create({
-      username: req.body.firstName,
+      username: req.body.username,
       email: req.body.email,
       password: req.body.password,
     });
 
     req.session.save(() => {
       req.session.loggedIn = true;
-
+      req.session.username = dbUserData.username;
+      console.log(req.session.username);
+      console.log(
+        '🚀 ~ file: user-routes.js ~ req.session.save ~ req.session.cookie',
+        req.session.cookie
+      );
       res.status(200).json(dbUserData);
     });
   } catch (err) {
@@ -75,9 +80,10 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect email or password. Please try again!' });
       return;
     }
-
     req.session.save(() => {
       req.session.loggedIn = true;
+      req.session.username = dbUserData.username;
+      console.log(req.session.username);
       console.log(
         '🚀 ~ file: user-routes.js ~ line 57 ~ req.session.save ~ req.session.cookie',
         req.session.cookie
@@ -95,6 +101,7 @@ router.post('/login', async (req, res) => {
 
 // Logout
 router.post('/logout', (req, res) => {
+  console.log('user logged out!');
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();

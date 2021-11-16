@@ -4,7 +4,6 @@ const path = require('path');
 require('dotenv').config( {
     path: path.join(__dirname, '../.env')
   } );
-console.log(process.env.MAIL_USER);
 
 function mailSend(data) {
     const transporter = nodemailer.createTransport({ 
