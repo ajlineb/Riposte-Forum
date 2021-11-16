@@ -1,5 +1,5 @@
 <div>
-    <div class='container px-5 py-24 mx-auto flex flex-wrap items-center'>        
+    <div class='container px-5 py-24 mx-auto flex flex-wrap items-center'>
         <!--Card 1-->
             <div class="w-full"></div>
             <div
@@ -46,7 +46,7 @@
                 </div>
             </div>          
 <input type="text" class="focus:ring-indigo-500 focus:border-indigo-500 block h-10 w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="Write a comment..." id="comment-field">
-  <button type="submit" class="group relative w-300 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-900 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 post-com" style="display: none;">
+  <button id="comment-btn" type="submit" class="group relative w-300 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-900 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 post-com" style="display: inline">
     <span class="absolute left-0 inset-y-0 flex items-center pl-3">
         <path fill-rule="evenodd"
             d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
@@ -57,6 +57,10 @@
 </button>
         </div>
 </div>
-{{#each post.comments as |comment|}}
-{{> comments-block}}
-{{/each}}
+<div>
+    {{#each post.comments as |comment|}}
+    {{> comments-block}}
+    {{/each}}
+</div>
+
+<script src='/js/newComment.js'></script>

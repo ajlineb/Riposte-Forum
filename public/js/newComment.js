@@ -1,5 +1,4 @@
 async function getUser() {
-  // after matching returns user id
   const response = await fetch('/session');
   const jsonRes = await response.json();
   const allUsers = await fetch('/api/user');
@@ -10,15 +9,14 @@ async function getUser() {
   return matchId;
 }
 
-async function getUserNav() {
-  // return username
-  const response = await fetch('/session');
-  const jsonRes = await response.json();
-  console.log(jsonRes);
-  if (!jsonRes.username) {
-    return 'User not logged in';
-  }
-  return jsonRes.username;
+async function getPost() {
+  console.log(window.location.href);
+  currentPosturl = window.location.href;
+  const urlSplit = currentPosturl.split('/');
+  postId = urlSplit[urlSplit.length - 1];
+  console.log(postId);
+  console.log(urlSplit);
+  return postId;
 }
 
 function runModal(submitButton) {
@@ -42,7 +40,7 @@ function runModal(submitButton) {
   };
 }
 
-async function submitNewPost(event) {
+async function submitNewComment(event) {
   event.preventDefault();
   let today = new Date();
   let date =
@@ -50,32 +48,31 @@ async function submitNewPost(event) {
   let time =
     today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
   let dateTime = date + ' at ' + time;
-  console.log(time);
+  console.log(dateTime);
+  const comment = document.getElementById('comment-field').value;
   const modal = document.getElementById('my-modal');
   const okButton = document.getElementById('ok-btn');
-  const post_title = document.getElementById('post_title').value;
-  const post_content = document.getElementById('post_content').value;
   const userName = await getUser();
+  const post = await getPost();
 
-  const response = await fetch('/api/forum', {
+  const response = await fetch('/api/comments', {
     method: 'POST',
     body: JSON.stringify({
-      forum_name: post_title,
-      forum_text: post_content,
-      forum_time_stamp: dateTime,
+      comment_desc: comment,
+      comment_time_stamp: dateTime,
       user_id: parseInt(userName),
+      forum_id: post,
     }),
     headers: {
       'Content-Type': 'application/json',
     },
   });
-
+  document.location.reload;
   if (response.status == 200) {
     modal.style.display = 'block';
     //bgColor.style.display = "block";
     okButton.onclick = function () {
       modal.style.display = 'none';
-      document.location.replace('/all-posts');
     };
 
     window.onclick = function (event) {
@@ -85,10 +82,5 @@ async function submitNewPost(event) {
     };
   }
 }
-const userEl = document.getElementById('user-id');
-const submitPost = document.getElementById('post_button');
-const userNameEl = getUserNav().then((user) => {
-  userEl.innerHTML = user;
-});
-
-submitPost.addEventListener('click', submitNewPost);
+const submitPost = document.querySelector('#comment-btn');
+submitPost.addEventListener('click', submitNewComment);

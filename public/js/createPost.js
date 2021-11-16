@@ -7,7 +7,7 @@ const createPost = async () => {
   if (response.ok) {
     document.location.replace('./newpost');
   } else {
-    alert('Failed to log out.');
+    alert('Failed to create post.');
   }
 };
 
