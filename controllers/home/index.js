@@ -3,7 +3,7 @@ const withAuth = require('../../utils/auth');
 const router = require('express').Router();
 
 //Route used to get all posts
-router.get('/all-posts', async (req, res) => {
+router.get('/all-posts', withAuth, async (req, res) => {
   try {
     const dbPostsData = await Forum.findAll({
       include: [
@@ -80,7 +80,7 @@ router.get('/newpost', async (req, res) => {
   try {
     let sessionData = req.session;
     res.render('new-post', {
-      sessionData
+      sessionData,
     });
   } catch (err) {
     console.log(err);
