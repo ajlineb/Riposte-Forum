@@ -1,9 +1,11 @@
-const userEl = document.getElementById("user-id");
 async function getUser(){
     const response = await fetch('/session');
     const jsonRes = await response.json();
     console.log("From main page script");
     console.log(jsonRes.username);
-    userEl.innerHTML = jsonRes.username;
+    return jsonRes.username;
 }
-getUser();
+const userEl = document.getElementById("user-id");
+const userNameEl = getUser().then((user) => {
+    userEl.innerHTML = user;
+})
