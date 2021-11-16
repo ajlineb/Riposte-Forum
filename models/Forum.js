@@ -22,7 +22,7 @@ Forum.init(
       allowNull: false,
     },
     forum_time_stamp: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     user_id: {
