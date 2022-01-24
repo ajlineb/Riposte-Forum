@@ -1,7 +1,6 @@
 # Riposte 11/2/2021
 
 ## Contributers 
-* Ammar
 * Anthony
 * Philip
 * Terrence
