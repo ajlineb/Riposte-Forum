@@ -7,6 +7,14 @@
 * Terrence
 * Graham
 
+# Image
+![alt text](./img/riposte.png)
+
+# Testing
+You can access the webpage without creating an account by using a premade account!  
+### Email Address: guestUser101@gmail.com  
+### Password: Guest101
+
 # Overview
 * Must use Node.js and express.js to create a RESTful API
 * Must use HandleBars.js as the template engine
