@@ -43,6 +43,7 @@ router.post('/signup', async (req, res) => {
     req.session.save(() => {
       req.session.loggedIn = true;
       req.session.username = dbUserData.username;
+      req.session.cookie.maxAge = 900000000;
       console.log(req.session.username);
       console.log(
         '🚀 ~ file: user-routes.js ~ req.session.save ~ req.session.cookie',
@@ -83,6 +84,7 @@ router.post('/login', async (req, res) => {
     req.session.save(() => {
       req.session.loggedIn = true;
       req.session.username = dbUserData.username;
+      req.session.cookie.maxAge = 900000000;
       console.log(req.session.username);
       console.log(
         '🚀 ~ file: user-routes.js ~ line 57 ~ req.session.save ~ req.session.cookie',
@@ -101,12 +103,14 @@ router.post('/login', async (req, res) => {
 
 // Logout
 router.post('/logout', (req, res) => {
-  console.log('user logged out!');
-  if (req.session.loggedIn) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
-  } else {
+  try {
+    if (req.session.loggedIn) {
+      req.session.destroy(() => {
+        res.status(204).end();
+      });
+    }
+  } catch (err) {
+    console.log(err);
     res.status(404).end();
   }
 });
