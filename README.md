@@ -7,9 +7,9 @@
 * [Overview](#overview)
 * [Ideas](#ideas)
 * [Tables](#tables)
-* [UserStory](#user story)
+* [User Story](#user)
 * [Summery](#summery)
-* [Allocations](#allocations)
+* [Allocations](#project)
 
 ## Contributers 
 * Anthony
