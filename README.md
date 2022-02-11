@@ -7,9 +7,8 @@
 * [Overview](#overview)
 * [Ideas](#ideas)
 * [Tables](#tables)
-* [User Story](#user story)
+* [User_Story](#user_story)
 * [Summary](#summary)
-* [Allocations](#project)
 
 ## Contributers 
 * Anthony
@@ -62,7 +61,7 @@ Chat server/chat board/chat room (socket io, firebase)
     1. Post table
     2. User table
     3. Comment table
-# USER STORY:
+# USER_STORY:
 AS a TechCommenting service Manager: 
 I WANT a webpage/website that allows my users to create an account with a unique name and email so that they may post and comment on posts.
 AS a user I should be able to see posts and create posts
