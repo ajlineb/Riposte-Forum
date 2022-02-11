@@ -7,8 +7,8 @@
 * [Overview](#overview)
 * [Ideas](#ideas)
 * [Tables](#tables)
-* [User Story](#user)
-* [Summery](#summery)
+* [User Story](#user story)
+* [Summary](#summary)
 * [Allocations](#project)
 
 ## Contributers 
