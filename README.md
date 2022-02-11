@@ -7,7 +7,11 @@
 * Graham
 
 # Image
-![alt text](./img/riposte.png)
+![alt text](./img/riposte.png)  
+
+#Links
+* Deployed page: https://ripost-forum.herokuapp.com/
+* Github page: https://github.com/Terrence-Me/project2-team-one
 
 # Testing
 You can access the webpage without creating an account by using a premade account!  
